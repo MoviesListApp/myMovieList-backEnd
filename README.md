@@ -1,2 +1,1 @@
 # fullCrudApp
-///full
