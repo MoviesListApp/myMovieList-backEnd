@@ -16,12 +16,17 @@ const AddMovie = require('./Controller/movies.controller').AddMovie;
 const deleteMovie = require('./Controller/movies.controller').deleteMovie;
 const updateMovie = require('./Controller/movies.controller').updateMovie;
 const getMovie = require('./Controller/movies.controller').getMovie;
-
-app.get('/getAllMovies', getAllMovies);
+const handleData = require('./Controller/movies.controller').handleData;
+const handleSearch = require('./Controller/movies.controller').handleSearch;
+const getMoviesDataBase = require('./Controller/movies.controller').getMoviesDataBase;
+app.get('/', handleData);
+app.get('/getAllTrendingMovies', getAllMovies);
 app.post('/addMovie', AddMovie);
 app.delete('/DELETE/:id', deleteMovie);
 app.put('/UPDATE/:id', updateMovie);
 app.get('/getMovie/:id', getMovie);
+app.get('/search', handleSearch);
+app.get('/getMoviesDataBase', getMoviesDataBase);
 
 client.connect()
     .then(() => {
