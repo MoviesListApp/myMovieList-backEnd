@@ -114,7 +114,7 @@ const handleData = ((request, response) => {
 const handleSearch = ((request, response) => {
     let search = request.query.query;
 
-    axios.get(`https://api.themoviedb.org/3/search/company?api_key=${my_api}&query=${search}&page=1`)
+   axios.get(`https://api.themoviedb.org/3/search/movie?api_key=${my_api}&language=en-US&page=1&include_adult=false&query=${search}`)
         .then(data => {
             response.send(data.data);
         }).catch((err) => {
