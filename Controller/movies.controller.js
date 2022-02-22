@@ -44,9 +44,9 @@ const getAllMovies = (request, response) => {
 
 const AddMovie = (request, response) => {
     let req = request.body;
-    console.log('====================================');
-    console.log(req);
-    console.log('====================================');
+    // console.log('====================================');
+    // console.log(req);
+    // console.log('====================================');
     let newMovie = [req.title, req.poster_path, req.overview, req.release_dates, req.comment];
     let insertSql = `INSERT INTO mymovies(title,  poster_path, overview, release_dates, comment) VALUES($1, $2, $3, $4, $5);`;
     client.query(insertSql, newMovie).then(data => {
@@ -54,16 +54,16 @@ const AddMovie = (request, response) => {
         // response.json(data.rows);
         response.send("Hello")
     }).catch((error) => {
-        console.log('====================================');
+        // console.log('====================================');
         console.log(error);
-        console.log('====================================');
+        // console.log('====================================');
     });
 
 }
 
 const deleteMovie = ((request, response) => {
     const id = request.params.id;
-    console.log(id);
+    // console.log(id);
     let delSql = `DELETE FROM myMovies WHERE id = ${id};`;
     client.query(delSql).then(results => {
         console.log(results);
@@ -76,12 +76,12 @@ const deleteMovie = ((request, response) => {
 const updateMovie = ((request, response) => {
     const id = request.params.id;
     let comm = [request.body.comment];
-    console.log(id);
-    console.log(comm);
+    // console.log(id);
+    // console.log(comm);
     let upSql = `UPDATE myMovies SET comment = $1 WHERE id = ${id} RETURNING *;`;
     client.query(upSql, comm)
         .then(results => {
-            console.log(results.rows);
+            // console.log(results.rows);
             response.status(200).send('your data has been updated successfully')
         })
         .catch(console.error)
